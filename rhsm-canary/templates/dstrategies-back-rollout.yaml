@@ -66,4 +66,4 @@ spec:
             canarySubsetName: canary
             stableSubsetName: stable
       steps:
-        <SET-STEPS>
+        - pause: { duration: 10 }  # 10 seconds
