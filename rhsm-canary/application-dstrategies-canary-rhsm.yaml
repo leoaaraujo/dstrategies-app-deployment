@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dstrategies-canary-service-mesh
+  namespace: user11-gitops-argocd
+spec:
+  destination:
+    name: ''
+    namespace: user11-canary-service-mesh
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: rhsm-canary
+    repoURL: https://github.com/leoaaraujo/dstrategies-app-deployment
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - edit.values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
